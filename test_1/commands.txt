@@ -1,0 +1,20 @@
+cd Desktop
+
+Mkdir test_1
+
+Cd test_1
+
+touch index.html style.css commands.txt
+
+cp index.html index_2.html
+
+rm style.css
+
+ mkdir destination
+
+ mv ~/Desktop/test_1/index_2.html ~/Desktop/destination
+
+ls destination
+
+rm -R destination
+

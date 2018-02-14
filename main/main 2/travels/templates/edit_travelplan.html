@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block logout %}
+  <p align="right">
+    <a href="{% url "travelplan-list" %}">Home</a>
+    &nbsp;&nbsp;
+    <a href="{% url 'logout' %}">Logout</a>
+  </p>
+{% endblock %}
+
+{% block content %}
+
+<h2>Add a Trip</h2>
+
+<form action="{% url "travelplan-new" %}" method="POST">
+  {% csrf_token %}
+  {% for field in form %}
+    <p>
+      {{ field.errors }}
+      {{ field.label_tag }}: {{ field }}
+    </p>
+  {% endfor%}
+  <input id="save_travel" type="submit" value="Add" />
+</form>
+
+<!-- <a href="{% url "travelplan-list" %}">home</a> -->
+
+{% endblock %}

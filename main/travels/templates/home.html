@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h1>Welcome to Travel Buddy!</h1>
+  {% if user.is_authenticated %}
+    <p>Checkout your <a href="{% url 'travelplan-list' %}">travel plans</a></p>
+  {% else %}
+    <p> Login or Signup above</p>
+  {% endif %}
+{% endblock %}

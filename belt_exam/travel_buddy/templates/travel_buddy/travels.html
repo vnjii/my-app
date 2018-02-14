@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'courses/style.css' %}">
+    </head>
+    <body>
+        <li><a href="/main/">Logout</a></li>
+        <h2>Hello, Jerry!</h2>
+        <h3>Your Trip Schedules</h3>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action='/courses/create' method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <table style="width:80%">
+                <tr>
+                  <th>Destination</th>
+                  <th>Travel Start Date</th>
+                  <th>Travel End Dates</th>
+                  <th>Plan</th>
+                </tr>
+                <tr>
+                  <td>Paris,France</td>
+                  <td>May 26 2015</td>
+                  <td>May 30 2015</td>
+                  <td>Stroll at the Eiffel Tower</td>
+                </tr>
+                <tr>
+                  <td>Bohol PH</td>
+                  <td>Aug 27 2015</td>
+                  <td>Sept 01 2015</td>
+                  <td>Meet the Toraier</td>
+                </tr>
+              </table>
+            </div>
+            <h3>Other User's Travel Plans</h3>
+            <div class="form-group">
+              <table style="width:100%">
+                <tr>
+                  <th>Name</th>
+                  <th>Destination</th>
+                  <th>Travel Start Date</th>
+                  <th>Travel End Dates</th>
+                  <th>Plan</th>
+                </tr>
+                <tr>
+                  <td>Stephen King</td>
+                  <td>Singapore</td>
+                  <td>July 10 2015</td>
+                  <td>July 26 2015</td>
+                  <td>Join</td>
+                </tr>
+                <tr>
+                  <td>Shiella Fisher</td>
+                  <td>Sydney Australia</td>
+                  <td>Dec 13 2015</td>
+                  <td>Dec 16 2015</td>
+                  <td>Join</td>
+                </tr>
+                <tr>
+                  <td>Tristan Lest</td>
+                  <td>Transylvania Romania</td>
+                  <td>Oct 31 2015</td>
+                  <td>Nov 02 2015</td>
+                  <td>Join</td>
+                </tr>
+              </table>
+            </div>
+            <input type="submit" value="Add Travel Plan">
+        </form>
+        <hr>
+        <h2>Trips</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Travel Start Date</th>
+                    <th>Travel End Date</th>
+                    <th>Plan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.desc }}</td>
+                    <td>{{ course.created_at }}</td>
+                    <td><a href="/courses/{{ course.id }}/confirm"><button type="">remove</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

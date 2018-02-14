@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Hello, {{ user.username }}!</h1>
+
+<!-- <ul>
+  {% for travel in object_list %}
+    <li class="travel">
+      <a href="{{ travel.get_absolute_url }}">{{ travel }}</a>
+    </li>
+  {% endfor %}
+</ul> -->
+<br>
+
+<div>
+  <h4>Your Trip Schedules</h4>
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Plan</th>
+    </tr>
+    {% for travel in object_list %}
+      <tr>
+        <td><a href="{{ travel.get_absolute_url }}">{{ travel.destination }}</a></td>
+        <td>{{ travel.travel_start_date }}</td>
+        <td>{{ travel.travel_end_date }}</td>
+        <td>{{ travel.plan }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<br>
+
+<div>
+  <h4>Other User's Travel Plans</h4>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Do You Want to Join?</th>
+    </tr>
+
+    {% for travel in object_list %}
+      <tr>
+        <td>{{ travel.owner }}</td>
+        <td><a href="{{ travel.get_absolute_url }}">{{ travel.destination }}</a></td>
+        <td>{{ travel.travel_start_date}}</td>
+        <td>{{ travel.travel_end_date }}</td>
+        <td><a href="">Join</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<p align="right"><a href="{% url "travelplan-new" %}">Add Travel Plan</a></p>
+
+{% endblock %}
